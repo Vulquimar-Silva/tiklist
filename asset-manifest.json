@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/tiklist/static/css/main.59a21d79.css",
-    "main.js": "/tiklist/static/js/main.fed04cd4.js",
+    "main.js": "/tiklist/static/js/main.e4152926.js",
     "static/js/453.ee4ff4af.chunk.js": "/tiklist/static/js/453.ee4ff4af.chunk.js",
     "index.html": "/tiklist/index.html",
     "main.59a21d79.css.map": "/tiklist/static/css/main.59a21d79.css.map",
-    "main.fed04cd4.js.map": "/tiklist/static/js/main.fed04cd4.js.map",
+    "main.e4152926.js.map": "/tiklist/static/js/main.e4152926.js.map",
     "453.ee4ff4af.chunk.js.map": "/tiklist/static/js/453.ee4ff4af.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.59a21d79.css",
-    "static/js/main.fed04cd4.js"
+    "static/js/main.e4152926.js"
   ]
 }
