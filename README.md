@@ -1,3 +1,30 @@
+# TikTok List
+
+A modern web application for managing and organizing TikTok videos in custom playlists.
+
+## Features
+
+- Import TikTok videos by URL
+- Create and manage custom playlists
+- Watch videos directly in the application
+- Dark mode support
+- Responsive design for mobile and desktop
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository
+```bash
+git clone https://github.com/yourusername/tiktok-list.git
+cd tiktok-list
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
