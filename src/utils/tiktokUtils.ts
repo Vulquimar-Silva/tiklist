@@ -7,7 +7,7 @@ export const extractTikTokId = (url: string): string | null => {
     /tiktok\.com\/@[\w.-]+\/video\/(\d+)/i,
     /tiktok\.com\/t\/(\w+)/i,
     /vm\.tiktok\.com\/(\w+)/i,
-    /(\d{19})/i // Direct ID format
+    /(\d{19})/i
   ];
   
   for (const pattern of patterns) {
@@ -39,7 +39,7 @@ export const getTikTokEmbedUrl = (url: string): string => {
 export const getTikTokDirectUrl = (url: string): string => {
   const videoId = extractTikTokId(url);
   if (!videoId) {
-    return url; // Return original if parsing fails
+    return url;
   }
   
   // Use canonical URL format

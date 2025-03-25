@@ -54,29 +54,6 @@ const VideoGrid: React.FC<VideoGridProps> = ({
 
   return (
     <Box sx={{ mb: 4 }}>
-      {title && (
-        <Typography 
-          variant="h5" 
-          component="h2" 
-          gutterBottom
-          sx={{
-            fontWeight: 600,
-            position: 'relative',
-            '&::after': {
-              content: '""',
-              position: 'absolute',
-              bottom: -8,
-              left: 0,
-              width: 60,
-              height: 4,
-              borderRadius: 2,
-              backgroundColor: 'primary.main',
-            }
-          }}
-        >
-          {title}
-        </Typography>
-      )}
 
       {videos.length === 0 ? (
         <Box 
@@ -175,7 +152,7 @@ const VideoGrid: React.FC<VideoGridProps> = ({
               <Box 
                 sx={{ 
                   position: 'relative',
-                  paddingBottom: '177.77%', // Proporção 9:16 para vídeos TikTok
+                  paddingBottom: '177.77%',
                   height: 0,
                   overflow: 'hidden',
                   backgroundColor: '#000',

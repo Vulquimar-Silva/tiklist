@@ -30,7 +30,6 @@ import {
 } from '@mui/icons-material';
 import { useAppContext } from '../context/AppContext';
 import { TikTokVideo } from '../types';
-import VideoPlayer from '../components/VideoPlayer';
 import { formatDistanceToNow } from 'date-fns';
 
 const PlaylistPage: React.FC = () => {
@@ -164,7 +163,7 @@ const PlaylistPage: React.FC = () => {
                   borderRadius: 2, 
                   overflow: 'hidden',
                   aspectRatio: '9/16',
-                  maxHeight: '70vh',
+                  maxHeight: '80vh',
                   display: 'flex',
                   justifyContent: 'center',
                   bgcolor: 'black'
@@ -212,7 +211,7 @@ const PlaylistPage: React.FC = () => {
                     disabled={currentVideoIndex === 0}
                     onClick={() => setCurrentVideoIndex(prev => Math.max(0, prev - 1))}
                   >
-                    Previous
+                    Anterior
                   </Button>
                   <Button 
                     variant="contained" 
@@ -220,7 +219,7 @@ const PlaylistPage: React.FC = () => {
                     onClick={handleNextVideo}
                     endIcon={<PlayArrowIcon />}
                   >
-                    Next Video
+                    Próximo vídeo
                   </Button>
                 </Box>
               </Paper>
@@ -313,7 +312,7 @@ const PlaylistPage: React.FC = () => {
         <DialogTitle>Delete Playlist</DialogTitle>
         <DialogContent>
           <Typography>
-            Are you sure you want to delete this playlist? This action cannot be undone.
+            Tem certeza de que deseja excluir esta playlist? Esta ação não pode ser desfeita.
           </Typography>
         </DialogContent>
         <DialogActions>

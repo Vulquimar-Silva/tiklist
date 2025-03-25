@@ -4,13 +4,10 @@ import {
   Typography, 
   Paper, 
   Switch, 
-  FormControlLabel, 
-  Divider,
+  FormControlLabel,
   List,
   ListItem,
-  ListItemText,
-  ListSubheader,
-  FormGroup
+  ListSubheader
 } from '@mui/material';
 import { useAppContext } from '../context/AppContext';
 
@@ -38,7 +35,7 @@ const SettingsPage: React.FC = () => {
       </Typography>
       
       <Paper elevation={3} sx={{ p: 3, mb: 4 }}>
-        <List subheader={<ListSubheader>Video Playback Settings</ListSubheader>}>
+        <List subheader={<ListSubheader>Configurações de reprodução de vídeo</ListSubheader>}>
           <ListItem>
             <FormControlLabel
               control={
@@ -48,7 +45,7 @@ const SettingsPage: React.FC = () => {
                   color="primary"
                 />
               }
-              label="Autoplay videos"
+              label="Reprodução automática de vídeos"
             />
           </ListItem>
           <ListItem>
@@ -60,7 +57,7 @@ const SettingsPage: React.FC = () => {
                   color="primary"
                 />
               }
-              label="Start videos muted"
+              label="Iniciar vídeos silenciados"
             />
           </ListItem>
         </List>
@@ -68,10 +65,10 @@ const SettingsPage: React.FC = () => {
       
       <Paper elevation={3} sx={{ p: 3 }}>
         <Typography variant="h6" gutterBottom>
-          About
+          Sobre
         </Typography>
         <Typography variant="body2" paragraph>
-          TikTok List is a platform that allows you to organize and manage your favorite TikTok videos.
+          O TikList é uma plataforma que permite organizar e gerenciar seus vídeos favoritos do TikTok.
         </Typography>
         <Typography variant="body2" paragraph>
           Version: 1.0.0

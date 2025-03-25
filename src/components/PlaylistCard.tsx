@@ -248,7 +248,7 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlist, onSelect }) => {
         <DialogTitle>Delete Playlist</DialogTitle>
         <DialogContent>
           <Typography>
-            Are you sure you want to delete "{playlist.name}"? This action cannot be undone.
+            Tem certeza de que deseja excluir "{playlist.name}"? Esta ação não pode ser desfeita.
           </Typography>
         </DialogContent>
         <DialogActions>

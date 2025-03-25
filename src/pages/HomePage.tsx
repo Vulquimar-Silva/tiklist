@@ -16,6 +16,7 @@ import VideoGrid from '../components/VideoGrid';
 import { v4 as uuidv4 } from 'uuid';
 import { TikTokVideo } from '../types';
 import { extractVideoInfo } from '../services/tiktokService';
+import tiktokIllustration from '../assets/tiktok-illustration.png';
 
 const HomePage: React.FC = () => {
   const { videos, addVideo } = useAppContext();
@@ -25,7 +26,7 @@ const HomePage: React.FC = () => {
 
   const handleAddVideo = async () => {
     if (!url.trim()) {
-      setError('Please enter a TikTok URL');
+      setError('Insira uma URL do TikTok');
       return;
     }
 
@@ -39,7 +40,7 @@ const HomePage: React.FC = () => {
         id: uuidv4(),
         url: url,
         title: videoInfo.title || 'TikTok Video',
-        author: videoInfo.author || 'Unknown Creator',
+        author: videoInfo.author || 'Criador desconhecido',
         thumbnail: videoInfo.thumbnail || 'https://via.placeholder.com/320x568?text=TikTok+Video',
         duration: videoInfo.duration || 0,
         addedAt: new Date(),
@@ -48,8 +49,8 @@ const HomePage: React.FC = () => {
       addVideo(newVideo);
       setUrl('');
     } catch (err) {
-      setError('Failed to add video. Please check the URL and try again.');
-      console.error('Error adding video:', err);
+      setError('Falha ao adicionar vídeo. Verifique a URL e tente novamente.');
+      console.error('Erro ao adicionar vídeo:', err);
     } finally {
       setLoading(false);
     }
@@ -82,14 +83,14 @@ const HomePage: React.FC = () => {
                   mb: 1
                 }}
               >
-                Add TikTok Video
+                Adicione vídeos do TikTok aqui
               </Typography>
               <Typography 
                 variant="body1" 
                 color="text.secondary"
                 sx={{ mb: 3 }}
               >
-                Paste a TikTok video URL to add it to your collection
+                Cole a URL de um vídeo do TikTok para adicioná-lo à sua coleção
               </Typography>
               
               <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 1 }}>
@@ -137,7 +138,7 @@ const HomePage: React.FC = () => {
             <Grid item xs={12} md={5} sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
               <Box 
                 component="img" 
-                src="/tiktok-illustration.PNG" 
+                src={tiktokIllustration} 
                 alt="TikTok Videos"
                 sx={{ 
                   maxWidth: '100%', 
@@ -153,7 +154,7 @@ const HomePage: React.FC = () => {
 
       <Box sx={{ mb: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
-          <Typography 
+        <Typography 
             variant="h5" 
             component="h2" 
             sx={{ 
@@ -171,15 +172,12 @@ const HomePage: React.FC = () => {
               }
             }}
           >
-            Recently Added Videos
+            Adicionados recentemente
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
-          <Typography variant="body2" color="text.secondary">
-            {videos.length} {videos.length === 1 ? 'video' : 'videos'} na sua coleção
-          </Typography>
         </Box>
         
-        <VideoGrid videos={videos} emptyMessage="No videos yet. Add your first TikTok video above!" />
+        <VideoGrid videos={videos} emptyMessage="Nenhum vídeo ainda. Adicione seu primeiro vídeo do TikTok acima!" />
       </Box>
     </Container>
   );

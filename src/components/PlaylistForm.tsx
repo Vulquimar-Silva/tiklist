@@ -8,7 +8,6 @@ import {
   DialogTitle,
   Box,
   Typography,
-  Paper,
 } from '@mui/material';
 import { useAppContext } from '../context/AppContext';
 import { Playlist } from '../types';
@@ -55,23 +54,29 @@ const PlaylistForm: React.FC = () => {
   };
 
   return (
-    <Paper elevation={3} sx={{ p: 3, mb: 4 }}>
-      <Typography variant="h6" component="h2" gutterBottom>
-        Create New Playlist
+    <Box sx={{ mt: 2 }}>
+      <Typography variant="h6" gutterBottom>
+        
+Criar nova lista de reprodução
       </Typography>
       
-      <Button variant="contained" color="primary" onClick={handleOpen} fullWidth>
-        Create Playlist
+      <Button variant="contained" color="primary" onClick={handleOpen} fullWidth sx={{ py: 1.5 }}>
+        Criar Playlist
       </Button>
 
-      <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
-        <DialogTitle>Create New Playlist</DialogTitle>
+      <Dialog 
+        open={open} 
+        onClose={handleClose} 
+        fullWidth 
+        maxWidth="sm"
+      >
+        <DialogTitle>Criar nova Playlist</DialogTitle>
         <DialogContent>
           <Box component="form" sx={{ mt: 1 }}>
             <TextField
               autoFocus
               margin="dense"
-              label="Playlist Name"
+              label="Nome da Playlist"
               type="text"
               fullWidth
               variant="outlined"
@@ -88,7 +93,7 @@ const PlaylistForm: React.FC = () => {
             />
             <TextField
               margin="dense"
-              label="Description (optional)"
+              label="Descrição (opcional)"
               type="text"
               fullWidth
               variant="outlined"
@@ -104,7 +109,7 @@ const PlaylistForm: React.FC = () => {
           <Button onClick={handleSubmit} variant="contained">Create</Button>
         </DialogActions>
       </Dialog>
-    </Paper>
+    </Box>
   );
 };
 

@@ -116,19 +116,23 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const addVideoToPlaylist = (playlistId: string, videoId: string) => {
-    setPlaylists(prevPlaylists =>
-      prevPlaylists.map(playlist =>
-        playlist.id === playlistId && !playlist.videos.includes(videoId)
-          ? {
+    setPlaylists(prevPlaylists => 
+      prevPlaylists.map(playlist => {
+        if (playlist.id === playlistId) {
+          // Verifica se o vídeo já está na playlist para evitar duplicatas
+          if (!playlist.videos.includes(videoId)) {
+            return {
               ...playlist,
               videos: [...playlist.videos, videoId],
-              updatedAt: new Date(),
-            }
-          : playlist
-      )
+              updatedAt: new Date()
+            };
+          }
+        }
+        return playlist;
+      })
     );
   };
-
+  
   const removeVideoFromPlaylist = (playlistId: string, videoId: string) => {
     setPlaylists(prevPlaylists =>
       prevPlaylists.map(playlist =>

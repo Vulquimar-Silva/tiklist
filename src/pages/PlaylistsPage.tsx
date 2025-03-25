@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
-import { Box, Typography, Divider, Button, Dialog, DialogContent, Paper } from '@mui/material';
+import React from 'react';
+import { Box, Typography, Paper } from '@mui/material';
 import PlaylistForm from '../components/PlaylistForm';
 import PlaylistGrid from '../components/PlaylistGrid';
 import { useAppContext } from '../context/AppContext';
 
 const PlaylistsPage: React.FC = () => {
   const { playlists } = useAppContext();
-  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   
-  // Sort playlists by date updated (newest first)
   const sortedPlaylists = [...playlists].sort(
     (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
   );
@@ -27,32 +25,14 @@ const PlaylistsPage: React.FC = () => {
           Playlists
         </Typography>
         
-        <Box       
-sx={{ mt: 2 }}>
-          <Typography variant="h6" gutterBottom>
-            Create New Playlist
-          </Typography>
-          <Button 
-            variant="contained" 
-            fullWidth
-            onClick={() => setIsCreateDialogOpen(true)}
-            sx={{ py: 1.5 }}
-          >
-            CREATE PLAYLIST
-          </Button>
-        </Box>
+        {/* Incluir o PlaylistForm diretamente aqui */}
+        <PlaylistForm />
       </Paper>
-      
-      <Dialog open={isCreateDialogOpen} onClose={() => setIsCreateDialogOpen(false)}>
-        <DialogContent>
-          <PlaylistForm />
-        </DialogContent>
-      </Dialog>
       
       <PlaylistGrid 
         playlists={sortedPlaylists} 
-        title="Your Playlists" 
-        emptyMessage="No playlists created yet. Create your first playlist above!" 
+        title="Suas listas de reprodução" 
+        emptyMessage="Nenhuma playlist criada ainda. Crie sua primeira playlist acima!" 
       />
     </Box>
   );

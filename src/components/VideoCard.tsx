@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   Card,
   CardContent,
-  CardMedia,
   Typography,
   IconButton,
   Menu,
@@ -25,9 +24,9 @@ import {
   Person as PersonIcon,
   CalendarToday as CalendarTodayIcon,
 } from '@mui/icons-material';
-import { TikTokVideo, Playlist } from '../types';
+import { TikTokVideo } from '../types';
 import { useAppContext } from '../context/AppContext';
-import { fetchTikTokEmbed } from '../services/tiktokService';
+
 
 interface VideoCardProps {
   video: TikTokVideo;
@@ -97,11 +96,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ video, onPlay }) => {
     setDeleteDialogOpen(false);
   };
   
-  const formatDuration = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
-  };
+  // Removendo formatDuration que não é usado
 
   return (
     <>
@@ -237,7 +232,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ video, onPlay }) => {
         </MenuItem>
         <MenuItem onClick={handlePlaylistClick}>
           <PlaylistAddIcon fontSize="small" sx={{ mr: 1 }} />
-          Add to Playlist
+          Add Playlist
         </MenuItem>
         <MenuItem onClick={handleDeleteClick}>
           <DeleteIcon fontSize="small" sx={{ mr: 1 }} />
@@ -297,14 +292,15 @@ const VideoCard: React.FC<VideoCardProps> = ({ video, onPlay }) => {
         </DialogTitle>
         <DialogContent>
           {playlists.length === 0 ? (
-            <Typography>No playlists available. Create a playlist first.</Typography>
+            <Typography>Nenhuma playlist disponível. Crie uma playlist primeiro..</Typography>
           ) : (
             playlists.map((playlist) => (
               <MenuItem 
                 key={playlist.id} 
                 onClick={() => handleAddToPlaylist(playlist.id)}
-                sx={{ width: '100%', justifyContent: 'flex-start' }}
+                sx={{ width: '100%', justifyContent: 'flex-start', display: 'flex', alignItems: 'center' }}
               >
+                <PlaylistAddIcon color="primary" sx={{ mr: 1 }} />
                 {playlist.name}
               </MenuItem>
             ))
@@ -331,7 +327,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ video, onPlay }) => {
         </DialogTitle>
         <DialogContent>
           <Typography>
-            Are you sure you want to delete "{video.title}"? This action cannot be undone.
+            Tem certeza de que deseja excluir "{video.title}"? Esta ação não pode ser desfeita.
           </Typography>
         </DialogContent>
         <DialogActions>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import { 
   Box, 
   AppBar, 
@@ -26,8 +26,18 @@ import {
   Brightness4 as DarkModeIcon,
   Brightness7 as LightModeIcon
 } from '@mui/icons-material';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
+
+export const LayoutContext = createContext<{
+  closeAllModals: () => void;
+  isModalOpen: boolean;
+  setIsModalOpen: (isOpen: boolean) => void;
+}>({
+  closeAllModals: () => {},
+  isModalOpen: false,
+  setIsModalOpen: () => {},
+});
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -39,6 +49,25 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [drawerOpen, setDrawerOpen] = useState(!isMobile);
   const { user, updateUserPreferences } = useAppContext();
   const location = useLocation();
+  const navigate = useNavigate();
+  
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  const closeAllModals = () => {
+    setIsModalOpen(false);
+    window.dispatchEvent(new CustomEvent('close-all-modals'));
+  };
+  
+  useEffect(() => {
+    if (location.pathname === '/') {
+    } else if (location.pathname === '') {
+      navigate('/');
+    }
+  }, [location.pathname, navigate]);
+  
+  useEffect(() => {
+    closeAllModals();
+  }, [location.pathname]);
   
   const handleDrawerToggle = () => {
     setDrawerOpen(!drawerOpen);
@@ -63,29 +92,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       flexDirection: 'column',
       backgroundColor: 'background.paper'
     }}>
-      <Box 
-        sx={{ 
-          p: 2, 
-          display: 'flex', 
-          alignItems: 'center',
-          borderBottom: 1,
-          borderColor: 'divider'
-        }}
-      >
-        <Box 
-          component="img"
-          src="/tiktok-illustration.PNG"
-          alt="TikTok"
-          sx={{ 
-            height: 28, 
-            mr: 1,
-            borderRadius: 1
-          }}
-        />
-        <Typography variant="h6" component="div" sx={{ fontWeight: 700 }}>
-          TikTok List
-        </Typography>
-      </Box>
       
       <List sx={{ flexGrow: 1, pt: 2 }}>
         {menuItems.map((item) => (
@@ -163,9 +169,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <AppBar 
         position="fixed" 
         sx={{ 
-          zIndex: (theme) => theme.zIndex.drawer + 1,
+          zIndex: (theme) => theme.zIndex.drawer + 1, 
           boxShadow: 1,
-          backgroundColor: 'background.paper',
+          background: (theme) => `linear-gradient(145deg, 
+            ${alpha(theme.palette.primary.main, 0.1)} 0%, 
+            ${alpha(theme.palette.primary.dark, 0.2)} 100%)`,
           color: 'text.primary'
         }}
       >
@@ -182,18 +190,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             </IconButton>
           )}
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Box 
-              component="img"
-              src="/tiktok-illustration.PNG"
-              alt="TikTok"
-              sx={{ 
-                height: 28, 
-                mr: 1,
-                borderRadius: 1
-              }}
-            />
-            <Typography variant="h6" component="div" sx={{ fontWeight: 700 }}>
-              TikTok List
+            <Typography variant="h6" component="div" sx={{ display: 'flex', alignItems: 'center' }}>
+              TIK LIST
             </Typography>
           </Box>
         </Toolbar>
@@ -206,14 +204,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           open={drawerOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile
+            keepMounted: true,
           }}
           sx={{
             '& .MuiDrawer-paper': { 
               width: drawerWidth,
               boxSizing: 'border-box',
               borderRight: 1,
-              borderColor: 'divider'
+              borderColor: 'divider',
+              paddingTop: '64px', 
             },
           }}
         >
@@ -229,7 +228,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               width: drawerWidth,
               boxSizing: 'border-box',
               borderRight: 1,
-              borderColor: 'divider'
+              borderColor: 'divider',
+              paddingTop: '64px', 
             },
           }}
           open

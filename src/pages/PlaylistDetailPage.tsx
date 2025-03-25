@@ -24,16 +24,13 @@ const PlaylistDetailPage: React.FC = () => {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [videoToRemove, setVideoToRemove] = useState<string | null>(null);
   
-  // Find the current playlist
   const playlist = playlists.find(p => p.id === id);
   
-  // If playlist doesn't exist, redirect to playlists page
   if (!playlist) {
     navigate('/playlists');
     return null;
   }
   
-  // Get the videos in this playlist
   const playlistVideos = videos.filter(video => playlist.videos.includes(video.id));
   
   const handleGoBack = () => {
@@ -43,11 +40,6 @@ const PlaylistDetailPage: React.FC = () => {
   const handleDeletePlaylist = () => {
     deletePlaylist(playlist.id);
     navigate('/playlists');
-  };
-  
-  const handleRemoveVideo = (videoId: string) => {
-    setVideoToRemove(videoId);
-    setDeleteDialogOpen(true);
   };
   
   const handleConfirmRemove = () => {
@@ -107,7 +99,7 @@ const PlaylistDetailPage: React.FC = () => {
         <DialogTitle>Delete Playlist</DialogTitle>
         <DialogContent>
           <Typography>
-            Are you sure you want to delete the playlist "{playlist.name}"? This action cannot be undone.
+            Tem certeza de que deseja excluir a lista de reprodução "{playlist.name}"? Esta ação não pode ser desfeita.
           </Typography>
         </DialogContent>
         <DialogActions>
@@ -123,7 +115,7 @@ const PlaylistDetailPage: React.FC = () => {
         <DialogTitle>Remove Video</DialogTitle>
         <DialogContent>
           <Typography>
-            Are you sure you want to remove this video from the playlist? The video will still be available in your library.
+            Tem certeza de que deseja remover este vídeo da playlist? O vídeo ainda estará disponível na sua biblioteca.
           </Typography>
         </DialogContent>
         <DialogActions>
