@@ -61,7 +61,7 @@ npm run deploy
 ```
 
 Project Structure
-
+```
 tiklist/
 ├── public/
 │   ├── index.html
@@ -81,6 +81,7 @@ tiklist/
 │   │   └── index.ts
 │   └── App.tsx
 └── package.json
+```
 
 ## Usage
 1. Adding Videos : Click the "+" button on the home page to add a new TikTok video
