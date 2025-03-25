@@ -2,7 +2,7 @@
 
 A modern web application for organizing and managing your favorite TikTok videos in custom playlists.
 
-![TikTok List Screenshot]([https://via.placeholder.com/800x400?text=TikTok+List+Screenshot](http://localhost:3000/tiklist/static/media/tiktok-illustration.0a06d0d4fa6ca865967d.png))
+![TikTok List Screenshot](https://vulquimar-silva.github.io/tiklist/static/media/tiktok-illustration.0a06d0d4fa6ca865967d.png)
 
 ## Features
 
